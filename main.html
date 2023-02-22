@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- navbar -->
+    <div class="bar">
+        <div class="headTitle">
+            <h1>TennisView</h1>
+        </div>
+        <div class="burger">
+            <div class="line"></div>
+        </div>
+    </div>
+    <div class="extraBar">
+        <div class="b1">
+            <span style="border: solid white; border-radius: 50%; padding: 0.3em; margin-right: 0.125em;">B1</span>
+            <span>0%</span>
+            <div class="battery">
+                <div class="head"></div>
+                <div class="body">
+                    <div class="fill"></div>
+                </div>
+            </div>
+            <span>0V</span>
+        </div>
+        <div class="b2">
+            <span style="border: solid white; border-radius: 50%; padding: 0.3em; margin-right: 0.125em;">B2</span>
+            <span>0%</span>
+            <div class="battery">
+                <div class="head"></div>
+                <div class="body">
+                    <div class="fill"></div>
+                </div>
+            </div>
+            <span>0V</span>
+        </div>
+    </div>
+    <!-- content -->
+    <div class="content">
+        <div class="playMode">
+            <h2 class="title">Play Mode</h2>
+            <div class="manualMode">
+                <span class="dot"></span><a>Manual</a>
+            </div>
+            <div class="patternMode">
+                <span class="dot"></span><a>Pattern</a>
+            </div>
+            <div class="objectDetectionMode">
+                <span class="dot"></span><a>Object Detection</a>
+            </div>
+            <div class="testing">
+                <span class="dot"></span>
+                <a>Testing</a>
+            </div>
+        </div>
+        <div class="manualModeMenu hidden">
+            <div class="setShootType" id="selectable">
+                <div class="drive">
+                    <a>Drive</a>
+                </div>
+                <div class="topSpin">
+                    <a>Top Spin</a>
+                </div>
+                <div class="slice">
+                    <a>Slice</a>
+                </div>
+                <div class="lob">
+                    <a>Lob</a>
+                </div>
+            </div>
+            <div class="court">
+                <div class="front">
+                    <div class="note">
+                        <h2>Select Shoot Type</h2>
+                        <div class="startSign hidden"></div>
+                    </div>
+                    <div class="midLine"></div>
+                    <div class="serveLine"></div>
+                </div>
+                <div class="net">
+
+                </div>
+                <div class="back">
+                    <div class="serveLine"></div>
+                    <div class="midLine"></div>
+                    <div class="dropShoot" id="selectable">
+                        <div class="target1"><div><span>1</span></div></div>
+                        <div class="target2"><div><span>2</span></div></div>
+                        <div class="target3"><div><span>3</span></div></div>
+                    </div>
+                    <div class="normalShoot"id=selectable>
+                        <div class="target4"><div><span>4</span></div></div>
+                        <div class="target5"><div><span>5</span></div></div>
+                        <div class="target6"><div><span>6</span></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="objectDetectionMenu hidden">
+            <div class="dot">
+                <span>Loading</span>
+            </div>
+        </div>    
+        <div class="testingMenu hidden">
+            <div class="simulationFrame hidden">
+                <div id="simulation1"></div>
+                <div id="simulation2"></div>
+            </div>
+            <div class="speed m1">
+                <div class="set">
+                    <div>
+                        <a>M1|Speed</a>
+                    </div>
+                    <div class="min"><a>&minus;</a></div>
+                    <div><a class="val">0</a><a>%</a></div>
+                    <div class="add"><a>+</a></div>
+                </div>
+            </div>
+            <div class="speed m2">
+                <div class="set">
+                    <div>
+                        <a>M2|Speed</a>
+                    </div>
+                    <div class="min"><a>&minus;</a></div>
+                    <div><a class="val">0</a><a>%</a></div>
+                    <div class="add"><a>+</a></div>
+                </div>
+            </div>
+            <div class="rpm">
+                <div>
+                    <a>RPM1</a>
+                </div>
+                <div class="val">
+                    <a>0</a>
+                </div>
+                <div style="width: .1em; height: 1em; background-color: white;"></div>
+                <div>
+                    <a>RPM2</a>
+                </div>
+                <div class="val">
+                    <a>0</a>
+                </div>
+            </div>
+            <div class="rpmSimSlider hidden">
+                <div class="m1Slider">
+                    <div class="speedBar"></div>
+                </div>
+                <div class="m2Slider">
+                    <div class="speedBar"></div>
+                </div>
+            </div>
+            <div class="xAngle">
+                <div class="set">
+                    <div><a>X-Angle</a> </div>
+                    <div class="min"><a>&minus;</a></div>
+                    <div><a class="val">0</a><span>&#176;</span></div>
+                    <div class="add"><a>+</a></div>
+                </div>
+            </div>
+            <div class="yAngle">
+                <div class="set">
+                    <div><a>Y-Angle</a> </div>
+                    <div class="min"><a>&minus;</a></div>
+                    <div><a class="val">0</a><span>&#176;</span></div>
+                    <div class="add"><a>+</a></div>
+                </div>
+            </div>
+            <div class="reset">
+                <h3>Resert</h3>
+            </div>
+            <div class="shoot">
+                <h2>Shoot</h2>
+            </div>
+        </div>
+    </div>
+    <!-- //foot -->
+    <div class="forceStop">
+        <h2>Force</h2>
+        <span class="dot"></span>
+        <h2>Stop</h2>
+        <div class="arrow">
+            <div class="line1"></div>
+            <div class="line2"></div>
+        </div>
+    </div>
+    <div class="backMenuFoot hidden">
+        <h3> Back</h3>
+    </div>
+    <div class="fullscreen">
+        <div>
+            <div style="border-top: 0.2em solid white;border-left: 0.2em solid white;"></div>
+            <div style="border-top: 0.2em solid white;border-right: 0.2em solid white;"></div>
+        </div>
+        <div>
+            <div style="border-bottom: 0.2em solid white;border-left: 0.2em solid white;"></div>
+            <div style="border-bottom: 0.2em solid white;border-right: 0.2em solid white;"></div>
+        </div>
+    </div>
+    <div class="connection transparent hidden">
+        <img class="transparent hidden" style="margin-right: 0.25em;" width="24px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABiUlEQVR4nO2WTU4CQRCFx7XoyoU/uBCJchd/1oonIODC4AG4gjv/DmD8S0xQd268A0Y9g4miGwTymWLeJBMWwzR20AUvqQQyr96bqe7qriAY478BWAQqwD3wBHwpXoFbYNc4Pg0XgBOgw2B8A8dANpZfG8Z0E2hKtAWcAVvAKjCpWAaKetYW9025Nfvjamql60roHFhKkZMDbvrL4PqlXZV3z/GFJ4AHZ2PCNY3K62Sq/F55hzE+jcrrwzSVMWHLdLSRBq6pNxD2qeFsZKYG4E7G28EoAbzIOD9q46aMpzzrPlqkMc54NJ2W5kcS6VmkFY/GBWk2Rrq5gB1p1pNIZd/tpHPeUEoiZXXD2AGS82Cal1bbjuJBZLtPDZcejK+ldZiGPB/b3dVfmO5L4x2YTZu0EbsWq0OadqSx5ppciQ0CVzZppFzTqLyWW3Z96R6AdWt8CbW0Q4vqzYyioJa50MwVldftS/sBzAAHsXkqCcY5AuYCXyCcTEoaZRvAp8J+1/UsuWXGCP4APx9C6CdnOYDNAAAAAElFTkSuQmCC">
+        <span class="disconnect">Disconnected</span>
+        <div style="margin-left: .125em;" class="connectingDot hidden transparent">
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+        </div>
+    </div>
+    <script src="p5.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,534 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+canvas {
+    display: flex;
+}
+html{
+    font-size: 20px;
+}
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+
+    background-color: rgb(15, 15, 15)
+}
+div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hidden{
+    display: none;
+}
+.transparent{
+    opacity: 0;
+}
+div#selectable .selected{
+    color: aqua;
+    border: solid aqua;
+    background-color: black;
+    box-shadow: 0px 0px 10px 3px aqua;
+}
+/* navbar ------------------------------*/
+.bar{
+    height: 3em;
+    background-color: black;
+
+    justify-content: space-between;
+    padding: 0 0.5em 0 0.5em;
+
+    color: white;
+
+    z-index: 99;
+}
+.extraBar{
+    height: 0;
+    border-top: 0.1em solid black;
+    transition: all .25s, opacity .125s;
+
+    color: white;
+    justify-content: space-around;
+
+    opacity: 0;
+    font-size: 18px;
+
+    z-index: 99;
+}
+.extraBar.popup{
+    height: 2.5em;
+    border-top: 0.1em solid white;
+    border-bottom: 0.1em solid white;
+    background-color: black;
+    opacity: 100;
+}
+.extraBar .battery{
+    flex-direction: column;
+    margin: 0 0.25em;
+}
+.extraBar .battery .head{
+    background-color: white;
+    width: 6px;
+    height: 2px;
+}
+.extraBar .battery .body{
+    border: 0.15em solid white;
+    width: 16px;
+    height: 24px;
+
+    align-items: flex-end;
+    padding-bottom: 2px;
+}
+.extraBar .battery .fill{
+    background-color: white;
+    width: 8px;
+    height: 0px;
+}
+.headTitle{
+    width: 80vw;
+}
+.burger{
+    justify-content: end;
+    height: 2em;
+    z-index: 99;
+}
+.burger .line{
+    width: 2em;
+    height: 0.2em;
+    background-color: white;
+    transition: all .5s;
+}
+.burger .line::after,.burger .line::before{
+    content: '';
+    position: absolute;
+    width: 2em;
+    height: 0.2em;
+    background-color: white;
+    transition: all .5s;
+}
+.burger .line::after{
+    transform: translateY(-0.6em);
+}
+.burger .line::before{
+    transform: translateY(0.6em);
+}
+/* when burger click open */
+.burger .line.open{
+    background: transparent;
+}
+.burger .line.open::after{
+    transform: rotate(45deg);
+}
+.burger .line.open::before{
+    transform: rotate(-45deg);
+}
+.burger .connected{
+    background-color: greenyellow;
+}
+/* content ----------------------*/
+.content{
+    flex-direction: column;
+}
+
+/* playMode -*/
+.playMode{
+    position: absolute;
+    top: 20vh;
+    left: 10vw;
+
+    flex-direction: column;
+    background-color: black;
+    border: 0.1em solid white;
+
+    color: white;
+}
+.playMode *{
+    margin: 0.5em;
+}
+.playMode div{
+    width: 100%;
+    justify-content: start;
+}
+.playMode .title{
+    text-decoration: underline;
+}
+.dot{
+    margin-right: 0;
+    width: 1em;
+    height: 1em;
+    border-radius: 0.5em;
+    border-color: white;
+    border-style: solid;
+}
+/* manualModeMenu --*/
+.manualModeMenu{
+    flex-direction: column;
+    background-color: black;
+    color: white;
+}
+.manualModeMenu .setShootType{
+    width: 100vw;
+    justify-content: space-between;
+    z-index: 99;
+}
+.manualModeMenu .setShootType div{
+    border: 0.1em solid white;
+    width: 25vw;
+}
+.manualModeMenu .court{
+    flex-direction: column;
+}
+.manualModeMenu .court .front,.manualModeMenu .court .back{
+    width: 100vw;
+    height: 28vh;
+    background-color: lawngreen;
+    flex-direction: column;
+}
+.manualModeMenu .court .front{
+    justify-content: end;
+}
+.manualModeMenu .front .startSign{
+    margin: 0 .5em;
+    width: 1.6em;
+    height: 1.6em;
+    background-color: white;
+    border-radius: 8em;
+    border: 0.1em solid white;
+    animation-name: rec;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+}
+.manualModeMenu .court .back div div{
+    width: 33.33vw;
+    height: 14vh;
+}
+.manualModeMenu .court .back div div div{
+    width: 2em;
+    height: 2em;
+    border-radius: 1em;
+    /* border: solid black;
+    color: black; */
+    z-index: 99;
+}
+.back div div div{
+    border: solid black;
+    color: black;
+}
+.manualModeMenu .court .back .midLine{
+    position: absolute;
+}
+.manualModeMenu .court .back .serveLine{
+    position: absolute;
+    transform: translateY(-7vh);
+}
+.manualModeMenu .court div .midLine{
+    width: 100vw;
+    height: 0.1em;
+    background-color: white
+}
+.manualModeMenu .court div .serveLine{
+    width: 0.1em;
+    height: 14vh;
+    background-color: white;
+}
+.manualModeMenu .court .net{
+    width: 100vw;
+    height: 0.5em;
+    background-color: white;
+}
+.manualModeMenu .restartButton{
+    position: absolute;
+    bottom: 0.5em;
+    background-color: black;
+    border: solid white;
+    border-radius: 1em;
+    height: 2em;
+    padding: 0 1em;
+}
+/* objectDetectionMenu */
+.objectDetectionMenu{
+    width: 100vw;
+    height: 80vh;
+}
+.objectDetectionMenu .dot{
+    width: 10em;
+    height: 10em;
+    border-radius: 5em;
+    background-color: black;
+}
+.objectDetectionMenu .dot.glowing{
+    animation: glowing 1s ease-in-out 0s infinite alternate;
+}
+.objectDetectionMenu .dot span{
+    font-size: 2em;
+}
+/* simulation */
+.simulationFrame{
+    flex-direction: column;
+}
+/* testingMenu -- */
+.testingMenu{
+    margin: .3em;
+    flex-direction: column;
+    color: white;
+}
+.testingMenu div{
+    background-color: black;
+}
+.testingMenu div > div{
+    padding: 0.2em 0;
+}
+.testingMenu .speed div div{
+    padding: 0.5em;
+}
+.testingMenu .speed div div:has(a.val){
+    padding: 0;
+}
+.testingMenu .speed,.testingMenu .xAngle,.testingMenu .yAngle, .testingMenu .rpm, .rpmSimSlider , .testingMenu .reset{
+    border: 0.1em solid white;
+    width: 100%;
+    justify-content: space-evenly;
+}
+.testingMenu .rpmSimSlider div{
+    width: 50%;
+    height: 1em;
+
+    justify-content: left;
+}
+.testingMenu .rpmSimSlider .m1Slider{
+    border-right: 1px solid white;
+}
+.testingMenu .rpmSimSlider div .speedBar{
+    width: 3%;
+    background-color: #645CBB;
+}
+.testingMenu .rpmSimSlider .m2Slider{
+    border-left: 1px solid white;
+}
+
+.testingMenu .xAngle .set,.testingMenu .yAngle .set{
+    justify-content: space-evenly;
+    width: 100%;
+}
+.testingMenu .reset{
+    padding: 0.5em;
+}
+.testingMenu .reset.clicked{
+    animation-name: blink;
+    animation-duration: 1s;
+}
+.testingMenu .add, .testingMenu .min{
+    width: 1.6em;
+    height: 1.6em;
+    border-radius: 1em;
+    border: solid white;
+    margin: 0 .5em;
+}
+.testingMenu .shoot{
+    margin-top: 1em;
+    width: 6em;
+    height: 6em;
+    border-radius: 3em;
+    border: 0.1em solid black;
+    /* position: absolute; */
+    background-color: black;
+
+    animation-name: loading;
+    animation-duration: .25s;
+    animation-iteration-count: infinite;
+}
+.testingMenu .shoot.clicked{
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+/* forceStop----------------------- */
+.forceStop{
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    background-color: black;
+    color: white;
+
+    transform: translateX(-100vw);
+    transition: all 0.25s;
+    z-index: 999;
+}
+.forceStop.open{
+    transform: translateX(0);
+}
+.forceStop h2{
+    width: 30vw;
+}
+.forceStop h2:first-child{
+    text-align: end;
+}
+.forceStop span.dot{
+    width: 2em;
+    height: 2em;
+    border-radius: 1em;
+    margin: 0.5em 0.5em;
+    background-color: red;
+}
+.forceStop .arrow{
+    width: 2em;
+    height: 2em;
+    background-color: black;
+    border-radius: 1em 0 0 1em;
+    border-style: solid;
+    border-right: 0;
+    position: absolute;
+    right: 0;
+
+    flex-direction: column;
+    transform: rotateY(180deg) translateX(-2em);
+    transition: all 0.125s 0.125s ease-in-out;
+}
+.forceStop .arrow.open{
+    transform: rotateY(0) translateX(0);
+}
+.forceStop .arrow div{
+    width: 1em;
+    height: 0.1em;
+    background-color: white;
+}
+.forceStop .arrow div.line1{
+    transform: translate(0,-0.28em) rotate(-45deg);
+}
+.forceStop .arrow div.line2{
+    transform: translate(0,0.28em) rotate(45deg);
+}
+/* backMenu */
+.backMenuFoot{
+    bottom: 0;
+    right: 0;
+    height: 2em;
+    margin: 0.5em 0;
+    padding: 0.5em;
+    position: absolute;
+    background-color: black;
+    border: solid white;
+    border-radius: 1em 0 0 1em;
+    border-right: 0;
+
+    color: white;
+}
+/* fullscreen */
+.fullscreen{
+    width: 1.5em;
+    height: 1.5em;
+    position: absolute;
+    left: 2.5em;
+    bottom: .4em;
+    border: .1em solid white;
+    border-radius: 50%;
+    padding: 1em;
+
+    flex-direction: column;
+}
+.fullscreen div div{
+    width: .5em;
+    height: .5em;
+    margin: 0.2em;
+    transition: all .25s;
+}
+.fullscreen.onFullscreen div div{
+    margin: 0.1em;
+    rotate: 180deg;
+}
+.connection{
+    position: absolute;
+    bottom: .4em;
+    width: 7em;
+    height: 2.2em;
+    left: 5.2em;
+    background-color: black;
+    border: 0.1em solid white;
+    border-radius: 1em;
+
+    padding: .0 .5em;
+    color: white;
+    transition: all .25s;
+}
+.connection span{
+    transition: all .25s;
+}
+.connectingDot span{
+    transition: all 0.25s;
+    transform:  translateY(-3px);
+}
+.connectingDot span.jump{
+    animation-name: jump;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+@keyframes blink {
+    from{
+        background-color: aqua;
+    }
+    to{
+        background-color: black;
+    }
+}
+@keyframes loading {
+    25%{
+        border-top: 0.1em solid white;
+    }
+    50%{
+        border-color: black;
+        border-right: 0.1em solid white;
+    }
+    75%{
+        border-color: black;
+        border-bottom: 0.1em solid white;
+    }
+    100%{
+        border-color: black;
+        border-left: 0.1em solid white;
+    }
+}
+@keyframes rec {
+    75%{
+        background-color: red;
+    }
+    100%{
+        background-color: white;
+        border-color: pink;
+    }
+}
+
+@keyframes jump{
+    25%{
+        transform: translateY(-10px);
+    }
+    50%{
+        transform: translateY(0px);
+    }
+}
+@keyframes glowing {
+    0%{
+        border-color: white;
+        background-color: black;
+        box-shadow: #645CBB 0 0 0 0;
+        color: white;
+    }
+    50%{
+        border-color: gray;
+        background-color: #6d64c4;
+        box-shadow: #645CBB 0 0 1em 1em;
+        color: black;
+    }
+    100%{
+        border-color: white;
+        background-color: black;
+        box-shadow: #645CBB 0 0 0 0;
+        color: white;
+    }
+}
