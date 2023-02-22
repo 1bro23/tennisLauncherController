@@ -597,7 +597,7 @@ function websocketInit(){
         onDisconnect()
     }
 }
-websocketInit()
+//websocketInit()
 //checking connection
 let setTimeoutID;
 setInterval(() => {
