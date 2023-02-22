@@ -1,7 +1,7 @@
-window.onerror=()=>{
-    alert("fail to load")
-    document.location.reload()
-}
+// window.onerror=()=>{
+//     alert("fail to load")
+//     document.location.reload()
+// }
 //--------------------------------------------------p5js---------------------------------------------------//
 //universal variable
 let setTimeoutHandler1,setTimeoutHandler2;
@@ -597,7 +597,7 @@ function websocketInit(){
         onDisconnect()
     }
 }
-//websocketInit()
+websocketInit()
 //checking connection
 let setTimeoutID;
 setInterval(() => {
